@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 import Botao from "@/componentes/Botao";
+import AntDesign from '@expo/vector-icons/AntDesign';
 import { useState } from "react";
-import { Button, FlatList, Text, TextInput, View } from "react-native";
+import { Button, FlatList, Pressable, Text, TextInput, View } from "react-native";
 import { nextId } from "../util/geral";
 
 export default function Index() {
@@ -9,8 +9,10 @@ export default function Index() {
   const [lista, setLista] = useState([]);
 
   function adiciona(){
-    setLista([...lista, {id: nextId(lista), nome: nome}]);
-    setNome('');
+    if (nome.trim()) {
+      setLista([...lista, {id: nextId(lista), nome: nome}]);
+      setNome('');
+    }
   }
 
   function remove(id) {
@@ -36,19 +38,11 @@ export default function Index() {
       </View>
     )
   }
-=======
-import {useState} from "react";
-import { TextInput, View, Text } from "react-native";
-
-export default function Index() {
-  const [nome,  setNome] = useState('');
->>>>>>> a769ce9bc5022d75c11b5603c468ca7cc35f7f56
 
   return (
     <View
       style={{
         flex: 1,
-<<<<<<< HEAD
         justifyContent: "flex-start",
         alignItems: "center",
         backgroundColor: 'white'
@@ -70,10 +64,11 @@ export default function Index() {
             padding: 5
           }}
         />
-        <Button 
-          title="+"
+        <Pressable 
           onPress={ adiciona }
-        />
+        >
+          <AntDesign name="plus-circle" size={24} color="black" />
+        </Pressable>
       </View>
       <FlatList
         data={lista}
@@ -88,31 +83,8 @@ export default function Index() {
         onPress={ () => setLista([])}
         color="#0000ff"
         textColor="#ffffff"
-        style={{ fontWeight: 'bold' }}
+        style={{ fontWeight: 'bold', marginBottom: 20}}
       />
     </View>
   );
 }
-=======
-        padding:16,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <TextInput 
-      placeholder="Digite algo ..."
-      onChangeText={novoTexto => setNome(novoTexto)}
-      value={nome}
-        style={{
-          width: "100%",
-          padding: 5,
-          borderWidth: 1
-        }}
-      />
-
-      <Text>{nome}</Text>
-
-    </View>
-  );
-}
->>>>>>> a769ce9bc5022d75c11b5603c468ca7cc35f7f56
